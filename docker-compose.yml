@@ -1,0 +1,40 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: linkflow-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build:
+      context: ./backend
+    container_name: linkflow-backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env.example
+    environment:
+      MONGO_URI: mongodb://mongo:27017/linkflow_pro
+      CLIENT_URL: http://localhost:5173
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: linkflow-frontend
+    restart: unless-stopped
+    environment:
+      VITE_API_BASE_URL: http://localhost:5000/api
+      VITE_SHORT_URL_BASE: http://localhost:5000
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:

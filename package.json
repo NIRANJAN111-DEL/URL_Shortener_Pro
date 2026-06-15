@@ -1,0 +1,22 @@
+{
+  "name": "linkflow-pro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-ready full stack SaaS URL shortener platform.",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace backend",
+    "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace frontend",
+    "start": "npm run start --workspace backend",
+    "seed": "npm run seed --workspace backend",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
