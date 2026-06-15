@@ -25,8 +25,8 @@ https://youtu.be/y_H_WAPkeYw
 ```mermaid
 flowchart LR
   Browser[React/Vite Frontend] -->|Axios JWT| API[Express API]
-  Browser -->|Short link redirect| Redirect[/:shortCode]
-  API --> Mongo[(MongoDB)]
+  Browser -->|Short link redirect| Redirect["/:shortCode"]
+  API --> Mongo[("MongoDB")]
   Redirect --> Visits[Visit Analytics Service]
   Visits --> Mongo
   API --> Health[URL Health Check]
@@ -36,10 +36,10 @@ flowchart LR
 
 ```mermaid
 erDiagram
-  USER ||--o{ URL : owns
-  USER ||--o{ VISIT : receives
-  URL ||--o{ VISIT : tracks
-  ROLE ||--o{ USER : describes
+  USER ||--o{ URL : "owns"
+  USER ||--o{ VISIT : "receives"
+  URL ||--o{ VISIT : "tracks"
+  ROLE ||--o{ USER : "describes"
   USER {
     ObjectId _id
     string name
